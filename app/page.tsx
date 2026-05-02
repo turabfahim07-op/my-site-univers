@@ -1,76 +1,83 @@
+
 "use client";
 
 import React from 'react';
-import { Rocket, Shield, Zap, Globe, Star, Atom, Infinity } from 'lucide-react';
+import { Rocket, HardHat, GraduationCap, Globe, Sun, Info } from 'lucide-react';
 
-// Questa è la lista di tutti i corpi celesti (8 Pianeti + 4 Galassie)
-const spaceObjects = [
-  // PIANETI
-  { id: 1, name: "Mercurio", type: "Pianeta", description: "Il più vicino al Sole, piccolo e roccioso.", icon: Zap },
-  { id: 2, name: "Venere", type: "Pianeta", description: "Atmosfera densa e calore estremo.", icon: Shield },
-  { id: 3, name: "Terra", type: "Pianeta", description: "La nostra casa, l'unico mondo abitato.", icon: Globe },
-  { id: 4, name: "Marte", type: "Pianeta", description: "Il deserto rosso, futura frontiera umana.", icon: Rocket },
-  { id: 5, name: "Giove", type: "Pianeta", description: "Il gigante gassoso, il più grande di tutti.", icon: Zap },
-  { id: 6, name: "Saturno", type: "Pianeta", description: "Famoso per i suoi spettacolari anelli.", icon: Star },
-  { id: 7, name: "Urano", type: "Pianeta", description: "Il gigante di ghiaccio rotante sul fianco.", icon: Shield },
-  { id: 8, name: "Nettuno", type: "Pianeta", description: "Venti fortissimi ai confini del sistema.", icon: Rocket },
-  
-  // GALASSIE
-  { id: 9, name: "Spirale", type: "Galassia", description: "Come la Via Lattea, con bracci rotanti.", icon: Atom },
-  { id: 10, name: "Ellittica", type: "Galassia", description: "Forma sferica o a uovo, stelle antiche.", icon: Infinity },
-  { id: 11, name: "Lenticolare", type: "Galassia", description: "Un disco di stelle senza bracci definiti.", icon: Star },
-  { id: 12, name: "Irregolare", type: "Galassia", description: "Forme bizzarre nate da scontri cosmici.", icon: Zap },
-];
+export default function FahimTurabSoftwer() {
+  const planets = [
+    { name: "Mercurio", type: "Pianeta Roccioso", detail: "Il più piccolo e vicino al Sole. Non ha atmosfera e la sua superficie è piena di crateri." },
+    { name: "Marte", type: "Pianeta Roccioso", detail: "Conosciuto come il 'Pianeta Rosso' per via dell'ossido di ferro. Ha il vulcano più grande del sistema solare." },
+    { name: "Giove", type: "Gigante Gassoso", detail: "Il pianeta più grande. La sua 'Grande Macchia Rossa' è una tempesta che dura da secoli." },
+    { name: "Saturno", type: "Gigante Gassoso", detail: "Famoso per il suo incredibile sistema di anelli fatti di ghiaccio e polvere." },
+    { name: "Nettuno", type: "Gigante di Ghiaccio", detail: "Il pianeta più lontano e ventoso. È di un blu intenso a causa del metano nell'atmosfera." },
+  ];
 
-export default function TurabUniverse() {
+  const galaxies = [
+    { name: "Spirale", desc: "Hanno bracci curvi che partono dal centro, come la nostra Via Lattea." },
+    { name: "Ellittica", desc: "Hanno una forma a uovo e contengono stelle molto vecchie." },
+    { name: "Lenticolare", desc: "Una via di mezzo tra spirali ed ellittiche, senza bracci definiti." },
+    { name: "Irregolare", desc: "Non hanno una forma precisa e sono spesso nate da scontri tra galassie." }
+  ];
+
   return (
     <div className="min-h-screen bg-slate-950 text-white p-8 font-sans">
-      {/* Header del Sito */}
+      {/* HEADER PROFESSIONALE */}
       <header className="text-center mb-16">
-        <h1 className="text-6xl font-bold mb-4 tracking-tighter">
-          TURAB <span className="text-lime-400">TECH</span>
+        <h1 className="text-6xl font-bold mb-2 tracking-tighter text-orange-500">
+          FAHIM TURAB <span className="text-white">SOFTWER</span>
         </h1>
-        <p className="text-slate-400 text-xl tracking-widest uppercase">Exploring 8 Planets & 4 Galaxies</p>
+        <p className="text-slate-400 text-xl italic">Engineering the future of space exploration at 13</p>
       </header>
 
-      {/* Grid dei Contenuti */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {spaceObjects.map((item) => (
-          <div key={item.id} className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-lime-400 transition-all group">
-            <div className="flex justify-between items-start mb-4">
-              <item.icon className="w-10 h-10 text-lime-400 group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-bold px-2 py-1 bg-slate-800 rounded uppercase tracking-wider text-slate-400">
-                {item.type}
-              </span>
-            </div>
-            <h3 className="text-2xl font-bold mb-2">{item.name}</h3>
-            <p className="text-slate-400 leading-relaxed">
-              {item.description}
-            </p>
-          </div>
-        ))}
-      </div>
+      {/* SEZIONE SOLE (LA NOSTRA STELLA) */}
+      <section className="max-w-4xl mx-auto mb-12 bg-gradient-to-r from-orange-600 to-yellow-500 rounded-3xl p-8 shadow-2xl flex items-center gap-6">
+        <Sun className="w-20 h-20 text-white animate-pulse" />
+        <div>
+          <h2 className="text-4xl font-bold">IL SOLE</h2>
+          <p className="text-white/90 text-lg">Il cuore del nostro sistema. Una stella nana gialla che fornisce l'energia necessaria per la vita sulla Terra.</p>
+        </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="mt-20 text-center text-slate-500 border-t border-slate-900 pt-8">
-        <p>© 2024 Turab Tech - Digital Universe Roadmap</p>
+      {/* DATABASE PIANETI */}
+      <section className="max-w-6xl mx-auto mb-20">
+        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+          <Globe className="text-blue-400" /> Planetary Data Center
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {planets.map((p) => (
+            <div key={p.name} className="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-orange-500 transition-all group">
+              <h3 className="text-orange-500 font-bold text-2xl mb-1">{p.name}</h3>
+              <span className="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded uppercase font-bold">{p.type}</span>
+              <p className="mt-4 text-slate-300 leading-relaxed">{p.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* DATABASE GALASSIE */}
+      <section className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+          <Rocket className="text-purple-400" /> Galactic Structures
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {galaxies.map((g) => (
+            <div key={g.name} className="flex gap-4 bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
+              <div className="bg-purple-500/20 p-3 rounded-xl h-fit">
+                <Info className="text-purple-400" />
+              </div>
+              <div>
+                <h3 className="font-bold text-xl text-white">{g.name}</h3>
+                <p className="text-slate-400">{g.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="mt-20 text-center text-slate-600 border-t border-slate-900 pt-8">
+        © 2024 Fahim Turab Softwer • Middle School Engineering Project
       </footer>
     </div>
   );
 }
-
-### 2. Cosa è cambiato in questo codice?
-*   **Array Dinamico**: Ho creato una lista chiamata `spaceObjects` che contiene tutti i 12 oggetti.
-*   **Mappa Automatica**: Usando `.map()`, il codice crea automaticamente 12 "Card" (una per ogni pianeta e galassia) senza dover scrivere 12 volte lo stesso codice.
-*   **Icone**: Ho assegnato icone diverse (Rocket, Globe, Star, Atom) per distinguere i tipi di oggetti.
-*   **Stile Professionale**: Ho usato colori scuri (`slate-950`) e un accento verde lime (`lime-400`) che si sposa perfettamente con il tuo astronauta.
-
-### 3. Istruzioni per te:
-1.  Apri il tuo progetto su **GitHub**.
-2.  Vai nel file `app/page.tsx`.
-3.  Clicca sull'icona della matita per modificare.
-4.  Cancella tutto e incolla il codice sopra.
-5.  Fai il **"Commit changes"**.
-
-Il tuo universo è appena diventato molto più grande! Fammi sapere se ti piace come appare! 🚀🪐
-
