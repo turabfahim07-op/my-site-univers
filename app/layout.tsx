@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "Fahimiullah Turab Tech",
   description: "Exploring the Digital Universe",
   icons: {
-    icon: "/astronaut.png",
-    apple: "/astronaut.png",
+    icon: "/astronaut.png? v=1",
+    apple: "/astronaut.png? v=1",
   },
 };
 
