@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fahimiullah Turab Tech",
+  title:fahim turab software",
   description: "Exploring the Digital Universe",
   icons: {
     icon: "/astronaut.png? v=1",
