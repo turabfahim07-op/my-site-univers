@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Fahimiullah Turab Tech",
   description: "Exploring the Digital Universe",
   icons: {
-    icon: "/astronaut.png", // Questo forzerà l'uso della tua immagine
+    icon: "/astronaut.png",
     apple: "/astronaut.png",
   },
 };
