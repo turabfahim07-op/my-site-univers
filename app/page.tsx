@@ -1,157 +1,75 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
-import { 
-  Rocket, 
-  Cpu, 
-  Globe, 
-  Code2, 
-  Database, 
-  Layout, 
-  ArrowRight,
-  Github,
-  Linkedin,
-  Mail
-} from "lucide-react"
+import React from 'react'
+import { Rocket, Globe, Zap, Shield, Star, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 
-// --- Background Components ---
-function StarsBackground() {
+export default function NasaProfessionalPage() {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#030712]">
-      {[...Array(120)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            opacity: Math.random() * 0.7,
-            animationDuration: `${2 + Math.random() * 4}s`,
-          }}
-        />
-      ))}
-    </div>
-  )
-}
+    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans overflow-x-hidden">
+      {/* Background Stellato */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {[...Array(100)].map((_, i) => (
+          <div key={i} className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, opacity: Math.random() }} />
+        ))}
+      </div>
 
-// --- Main Page Component ---
-export default function PortfolioPage() {
-  return (
-    <div className="min-h-screen text-slate-100 font-sans selection:bg-orange-500/30">
-      <StarsBackground />
-      
-      {/* Navigation */}
-      <nav className="relative z-50 flex items-center justify-between px-6 py-6 max-w-7xl mx-auto">
-        <div className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
-          TURAB TECH
-        </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#services" className="hover:text-white transition-colors">Services</a>
-          <a href="#skills" className="hover:text-white transition-colors">Skills</a>
-        </div>
-        <button className="px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-orange-400 hover:text-white transition-all">
-          Contact Me
-        </button>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="relative z-10 pt-20 pb-32 px-6 max-w-7xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span className="px-4 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold uppercase tracking-widest">
-            Available for New Projects
-          </span>
-          <h1 className="mt-8 text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
-            Building the Future of <br />
-            <span className="bg-gradient-to-r from-orange-400 via-rose-400 to-purple-500 bg-clip-text text-transparent">
-              Digital Experiences
-            </span>
+      {/* Hero Section con Razzo NASA */}
+      <section className="relative z-10 pt-20 pb-32 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="flex-1 text-left">
+          <span className="text-orange-500 font-mono tracking-widest uppercase text-sm font-bold">Mission: Innovation</span>
+          <h1 className="text-6xl md:text-8xl font-black text-white mt-4 leading-tight">
+            TURAB <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">TECH</span>
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
-            Welcome to Fahimiullah Turab Tech. We specialize in high-end web development, 
-            3D interfaces, and innovative software solutions for the modern age.
+          <p className="text-xl text-slate-400 mt-6 max-w-lg">
+            Engineering digital solutions with the precision of aerospace technology. Welcome to the next frontier.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <button className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)]">
-              View Projects <ArrowRight size={18} />
-            </button>
-            <button className="px-8 py-4 bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-md border border-slate-700 rounded-xl font-bold transition-all">
-              Learn More
-            </button>
+        </motion.div>
+
+        <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity }} className="flex-1 relative">
+          <img 
+            src="https://images-assets.nasa.gov/image/spacex-crew-6-launch-jsc2023e011651/spacex-crew-6-launch-jsc2023e011651~medium.jpg" 
+            alt="NASA Rocket" 
+            className="rounded-2xl shadow-[0_0_50px_rgba(249,115,22,0.3)] border border-orange-500/20 w-full object-cover h-[400px]"
+          />
+          <div className="absolute -bottom-6 -right-6 bg-orange-500 p-6 rounded-xl font-bold text-white shadow-xl">
+            NASA IMAGERY <br/> LIVE DATA
           </div>
         </motion.div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="relative z-10 py-24 px-6 bg-slate-900/40 backdrop-blur-sm border-y border-slate-800/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold">Professional Services</h2>
-            <div className="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded-full"></div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* Sistema Solare "3D Feel" */}
+      <section className="relative z-10 py-20 bg-slate-900/50 backdrop-blur-md border-y border-slate-800">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold text-white mb-16 italic">Planetary Systems Hub</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: <Layout className="text-orange-400" />, title: "Web Design", desc: "Creating stunning, responsive, and user-centric interfaces." },
-              { icon: <Code2 className="text-rose-400" />, title: "Development", desc: "Building fast, scalable applications using Next.js and React." },
-              { icon: <Database className="text-purple-400" />, title: "Backend", desc: "Secure data management and robust server-side architecture." }
-            ].map((service, index) => (
-              <div key={index} className="p-8 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-orange-500/50 transition-all group">
-                <div className="mb-4 p-3 bg-slate-900 rounded-lg w-fit group-hover:scale-110 transition-transform">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{service.desc}</p>
-              </div>
+              { name: 'Mars', img: 'https://starwalk.space/gallery/images/mars-the-ultimate-guide/1140x641.jpg', color: 'bg-red-500' },
+              { name: 'Saturn', img: 'https://science.nasa.gov/wp-content/uploads/2023/05/pia25102-saturn-approach-16x9-1.jpg', color: 'bg-yellow-500' },
+              { name: 'Earth', img: 'https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg', color: 'bg-blue-500' },
+              { name: 'Jupiter', img: 'https://science.nasa.gov/wp-content/uploads/2023/09/pia22946-jupiter-marble-16x9-1.jpg', color: 'bg-orange-800' }
+            ].map((planet) => (
+              <motion.div whileHover={{ scale: 1.1 }} key={planet.name} className="relative group cursor-pointer">
+                <div className={`absolute inset-0 ${planet.color} blur-3xl opacity-20 group-hover:opacity-40 transition-opacity`} />
+                <img src={planet.img} alt={planet.name} className="w-40 h-40 mx-auto rounded-full object-cover border-2 border-white/10 shadow-2xl mb-4" />
+                <h3 className="text-xl font-bold text-white">{planet.name}</h3>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="relative z-10 py-24 px-6 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl font-bold mb-6">Expertise & <br/>Tech Stack</h2>
-            <p className="text-slate-400 mb-8">
-              I use the latest technologies to ensure your project is not only beautiful 
-              but also high-performing and future-proof.
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              {['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Node.js', 'Three.js'].map((skill) => (
-                <div key={skill} className="flex items-center gap-2 text-slate-300 font-medium">
-                  <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-                  {skill}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="bg-gradient-to-br from-orange-500/10 to-purple-500/10 rounded-3xl border border-slate-700/50 p-8 relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-10 opacity-10">
-                <Cpu size={200} />
-             </div>
-             <h3 className="text-2xl font-bold mb-4 italic">"Innovation distinguishes between a leader and a follower."</h3>
-             <p className="text-orange-400 font-bold">— Professional Vision</p>
-          </div>
+      {/* Footer Professionale */}
+      <footer className="relative z-10 py-20 px-6 text-center">
+        <div className="flex justify-center gap-8 mb-8">
+           <Rocket className="hover:text-orange-500 cursor-pointer transition-colors" />
+           <Globe className="hover:text-blue-500 cursor-pointer transition-colors" />
+           <Zap className="hover:text-yellow-500 cursor-pointer transition-colors" />
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 py-12 px-6 border-t border-slate-800/50 text-center">
-        <div className="flex justify-center gap-6 mb-8">
-          <Github className="text-slate-400 hover:text-white cursor-pointer" />
-          <Linkedin className="text-slate-400 hover:text-white cursor-pointer" />
-          <Mail className="text-slate-400 hover:text-white cursor-pointer" />
-        </div>
-        <p className="text-slate-500 text-sm">
-          © {new Date().getFullYear()} Fahimiullah Turab Tech. All rights reserved.
-        </p>
+        <p className="text-slate-500 font-mono text-sm uppercase tracking-widest">© 2026 Turab Tech Aerospace Division</p>
       </footer>
     </div>
   )
 }
+
