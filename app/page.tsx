@@ -1,24 +1,33 @@
 "use client"
 
-import { Code, Laptop, Lightbulb, Rocket, Sparkles } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { GalaxyScene } from "@/components/galaxy-scene"
-import { SpaceCharts } from "@/components/space-charts"
+import React, { useState, useEffect } from 'react'
+import { 
+  Rocket, 
+  Cpu, 
+  Globe, 
+  Code2, 
+  Database, 
+  Layout, 
+  ArrowRight,
+  Github,
+  Linkedin,
+  Mail
+} from "lucide-react"
 import { motion } from "framer-motion"
 
-// Animated stars background
+// --- Background Components ---
 function StarsBackground() {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {[...Array(100)].map((_, i) => (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 bg-[#030712]">
+      {[...Array(120)].map((_, i) => (
         <div
           key={i}
-          className="absolute w-1 h-1 bg-white rounded-full animate-twinkle"
+          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 3}s`,
-            opacity: Math.random() * 0.7 + 0.3,
+            opacity: Math.random() * 0.7,
+            animationDuration: `${2 + Math.random() * 4}s`,
           }}
         />
       ))}
@@ -26,166 +35,123 @@ function StarsBackground() {
   )
 }
 
-export default function Home() {
+// --- Main Page Component ---
+export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-background relative">
+    <div className="min-h-screen text-slate-100 font-sans selection:bg-orange-500/30">
       <StarsBackground />
       
-      {/* Header */}
-      <header className="border-b border-border backdrop-blur-sm bg-background/80 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <motion.h1 
-            className="text-xl font-bold text-foreground flex items-center gap-2"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <Rocket className="h-6 w-6 text-primary" />
-            <span className="text-glow-orange">Fahimiullah Turab Tech</span>
-          </motion.h1>
-          <nav className="hidden md:flex gap-6">
-            <a href="#galaxy" className="text-muted-foreground hover:text-primary transition-colors">Galassia</a>
-            <a href="#servizi" className="text-muted-foreground hover:text-primary transition-colors">Servizi</a>
-            <a href="#dati" className="text-muted-foreground hover:text-primary transition-colors">Dati Spaziali</a>
-
-          </nav>
+      {/* Navigation */}
+      <nav className="relative z-50 flex items-center justify-between px-6 py-6 max-w-7xl mx-auto">
+        <div className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent">
+          TURAB TECH
         </div>
-      </header>
+        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+          <a href="#about" className="hover:text-white transition-colors">About</a>
+          <a href="#services" className="hover:text-white transition-colors">Services</a>
+          <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+        </div>
+        <button className="px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-orange-400 hover:text-white transition-all">
+          Contact Me
+        </button>
+      </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center relative z-10">
+      <section className="relative z-10 pt-20 pb-32 px-6 max-w-7xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex justify-center mb-6">
-            <Sparkles className="h-12 w-12 text-primary text-glow-orange" />
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance text-glow-orange">
-            Benvenuto in Fahimiullah Turab Tech
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 text-pretty text-glow-blue">
-            Soluzioni tecnologiche innovative per il tuo business. Esplora lo spazio della tecnologia con noi.
+          <span className="px-4 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-bold uppercase tracking-widest">
+            Available for New Projects
+          </span>
+          <h1 className="mt-8 text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
+            Building the Future of <br />
+            <span className="bg-gradient-to-r from-orange-400 via-rose-400 to-purple-500 bg-clip-text text-transparent">
+              Digital Experiences
+            </span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
+            Welcome to Fahimiullah Turab Tech. We specialize in high-end web development, 
+            3D interfaces, and innovative software solutions for the modern age.
           </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <button className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)]">
+              View Projects <ArrowRight size={18} />
+            </button>
+            <button className="px-8 py-4 bg-slate-800/50 hover:bg-slate-700/50 backdrop-blur-md border border-slate-700 rounded-xl font-bold transition-all">
+              Learn More
+            </button>
+          </div>
         </motion.div>
       </section>
 
-      {/* 3D Galaxy Section */}
-      <section id="galaxy" className="relative z-10 py-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="rounded-2xl overflow-hidden glow-mixed"
-          >
-            <h3 className="text-3xl font-bold text-center text-foreground mb-8 text-glow-blue">
-              Esplora il Sistema Solare 3D
-            </h3>
-            <p className="text-center text-muted-foreground mb-6">
-              Muovi il mouse per esplorare - I pianeti orbitano attorno al sole
-            </p>
-            <GalaxyScene />
-          </motion.div>
-        </div>
-      </section>
-
       {/* Services Section */}
-      <section id="servizi" className="py-20 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="bg-card/50 backdrop-blur-sm border-border glow-orange hover:glow-mixed transition-all duration-300">
-                <CardHeader>
-                  <Laptop className="h-10 w-10 text-primary mb-2" />
-                  <CardTitle className="text-foreground">Sviluppo Web</CardTitle>
-                  <CardDescription className="text-muted-foreground">Creazione di siti web moderni e responsivi</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Realizzo siti web personalizzati utilizzando le tecnologie più avanzate per garantire prestazioni ottimali.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+      <section id="services" className="relative z-10 py-24 px-6 bg-slate-900/40 backdrop-blur-sm border-y border-slate-800/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold">Professional Services</h2>
+            <div className="h-1 w-20 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="bg-card/50 backdrop-blur-sm border-border glow-blue hover:glow-mixed transition-all duration-300">
-                <CardHeader>
-                  <Code className="h-10 w-10 text-secondary mb-2" />
-                  <CardTitle className="text-foreground">Sviluppo Software</CardTitle>
-                  <CardDescription className="text-muted-foreground">Applicazioni su misura per le tue esigenze</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Sviluppo software personalizzato per automatizzare i processi e migliorare la produttività aziendale.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Card className="bg-card/50 backdrop-blur-sm border-border glow-orange hover:glow-mixed transition-all duration-300">
-                <CardHeader>
-                  <Lightbulb className="h-10 w-10 text-primary mb-2" />
-                  <CardTitle className="text-foreground">Consulenza IT</CardTitle>
-                  <CardDescription className="text-muted-foreground">Strategie tecnologiche per il tuo successo</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Offro consulenza per aiutarti a scegliere le soluzioni tecnologiche più adatte al tuo business.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: <Layout className="text-orange-400" />, title: "Web Design", desc: "Creating stunning, responsive, and user-centric interfaces." },
+              { icon: <Code2 className="text-rose-400" />, title: "Development", desc: "Building fast, scalable applications using Next.js and React." },
+              { icon: <Database className="text-purple-400" />, title: "Backend", desc: "Secure data management and robust server-side architecture." }
+            ].map((service, index) => (
+              <div key={index} className="p-8 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-orange-500/50 transition-all group">
+                <div className="mb-4 p-3 bg-slate-900 rounded-lg w-fit group-hover:scale-110 transition-transform">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{service.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Space Data Charts Section */}
-      <section id="dati" className="py-20 relative z-10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-3xl font-bold text-center text-foreground mb-4 text-glow-orange">
-              Dati Spaziali Interattivi
-            </h3>
-            <p className="text-center text-muted-foreground mb-12">
-              Grafici futuristici che mostrano dati sull&apos;universo
+      {/* Skills Section */}
+      <section id="skills" className="relative z-10 py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-4xl font-bold mb-6">Expertise & <br/>Tech Stack</h2>
+            <p className="text-slate-400 mb-8">
+              I use the latest technologies to ensure your project is not only beautiful 
+              but also high-performing and future-proof.
             </p>
-            <SpaceCharts />
-          </motion.div>
+            <div className="grid grid-cols-2 gap-4">
+              {['React', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Node.js', 'Three.js'].map((skill) => (
+                <div key={skill} className="flex items-center gap-2 text-slate-300 font-medium">
+                  <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+                  {skill}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-orange-500/10 to-purple-500/10 rounded-3xl border border-slate-700/50 p-8 relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10">
+                <Cpu size={200} />
+             </div>
+             <h3 className="text-2xl font-bold mb-4 italic">"Innovation distinguishes between a leader and a follower."</h3>
+             <p className="text-orange-400 font-bold">— Professional Vision</p>
+          </div>
         </div>
       </section>
 
-
-
       {/* Footer */}
-      <footer className="border-t border-border py-8 relative z-10 backdrop-blur-sm bg-background/80">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground">
-            &copy; {new Date().getFullYear()} Fahimiullah Turab Tech. Tutti i diritti riservati.
-          </p>
+      <footer className="relative z-10 py-12 px-6 border-t border-slate-800/50 text-center">
+        <div className="flex justify-center gap-6 mb-8">
+          <Github className="text-slate-400 hover:text-white cursor-pointer" />
+          <Linkedin className="text-slate-400 hover:text-white cursor-pointer" />
+          <Mail className="text-slate-400 hover:text-white cursor-pointer" />
         </div>
+        <p className="text-slate-500 text-sm">
+          © {new Date().getFullYear()} Fahimiullah Turab Tech. All rights reserved.
+        </p>
       </footer>
-    </main>
+    </div>
   )
 }
