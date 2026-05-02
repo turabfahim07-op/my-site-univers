@@ -1,82 +1,123 @@
 
 "use client";
 
-import React from 'react';
-import { Rocket, HardHat, GraduationCap, Globe, Sun, Info } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, Globe, Rocket, Shield, Settings, Mic, Camera } from 'lucide-react';
 
-export default function FahimTurabSoftwer() {
-  const planets = [
-    { name: "Mercurio", type: "Pianeta Roccioso", detail: "Il più piccolo e vicino al Sole. Non ha atmosfera e la sua superficie è piena di crateri." },
-    { name: "Marte", type: "Pianeta Roccioso", detail: "Conosciuto come il 'Pianeta Rosso' per via dell'ossido di ferro. Ha il vulcano più grande del sistema solare." },
-    { name: "Giove", type: "Gigante Gassoso", detail: "Il pianeta più grande. La sua 'Grande Macchia Rossa' è una tempesta che dura da secoli." },
-    { name: "Saturno", type: "Gigante Gassoso", detail: "Famoso per il suo incredibile sistema di anelli fatti di ghiaccio e polvere." },
-    { name: "Nettuno", type: "Gigante di Ghiaccio", detail: "Il pianeta più lontano e ventoso. È di un blu intenso a causa del metano nell'atmosfera." },
+export default function FahimGoogleClone() {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // Questo è il tuo "Indice": qui aggiungi quello che il tuo motore può trovare
+  const searchIndex = [
+    { title: "Fahim Turab Softwer - Official Site", url: "https://v0-fahimiullah-turab-tech.vercel.app", desc: "Il quartier generale dell'ingegneria digitale e spaziale gestito da Fahim." },
+    { title: "NASA - Esplorazione Spaziale", url: "https://www.nasa.gov", desc: "Agenzia spaziale per studiare Marte, Giove e le galassie lontane." },
+    { title: "Come diventare un Ingegnere Civile", url: "#", desc: "Guida completa alle costruzioni, ponti e infrastrutture moderne." },
+    { title: "GitHub - Dove nasce il codice", url: "https://github.com", desc: "La piattaforma usata da Fahim per costruire questo motore di ricerca." },
+    { title: "Pianeta Marte: La Guida", url: "#", desc: "Tutto quello che c'è da sapere sul pianeta rosso e le future colonie." }
   ];
 
-  const galaxies = [
-    { name: "Spirale", desc: "Hanno bracci curvi che partono dal centro, come la nostra Via Lattea." },
-    { name: "Ellittica", desc: "Hanno una forma a uovo e contengono stelle molto vecchie." },
-    { name: "Lenticolare", desc: "Una via di mezzo tra spirali ed ellittiche, senza bracci definiti." },
-    { name: "Irregolare", desc: "Non hanno una forma precisa e sono spesso nate da scontri tra galassie." }
-  ];
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim() === "") return;
+    
+    setIsSearching(true);
+    const filtered = searchIndex.filter(item => 
+      item.title.toLowerCase().includes(query.toLowerCase()) || 
+      item.desc.toLowerCase().includes(query.toLowerCase())
+    );
+    setResults(filtered);
+  };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-8 font-sans">
-      {/* HEADER PROFESSIONALE */}
-      <header className="text-center mb-16">
-        <h1 className="text-6xl font-bold mb-2 tracking-tighter text-orange-500">
-          FAHIM TURAB <span className="text-white">SOFTWER</span>
-        </h1>
-        <p className="text-slate-400 text-xl italic">Engineering the future of space exploration at 13</p>
-      </header>
+    <div className="min-h-screen bg-[#202124] text-white font-sans flex flex-col">
+      
+      {/* NAVBAR SUPERIORE */}
+      <nav className="p-4 flex justify-end gap-4 text-sm items-center text-slate-300">
+        <span className="hover:underline cursor-pointer">Gmail</span>
+        <span className="hover:underline cursor-pointer">Immagini</span>
+        <div className="p-2 hover:bg-slate-800 rounded-full cursor-pointer"><Settings size={20} /></div>
+        <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center font-bold text-white">F</div>
+      </nav>
 
-      {/* SEZIONE SOLE (LA NOSTRA STELLA) */}
-      <section className="max-w-4xl mx-auto mb-12 bg-gradient-to-r from-orange-600 to-yellow-500 rounded-3xl p-8 shadow-2xl flex items-center gap-6">
-        <Sun className="w-20 h-20 text-white animate-pulse" />
-        <div>
-          <h2 className="text-4xl font-bold">IL SOLE</h2>
-          <p className="text-white/90 text-lg">Il cuore del nostro sistema. Una stella nana gialla che fornisce l'energia necessaria per la vita sulla Terra.</p>
+      <main className={`flex-grow flex flex-col items-center ${isSearching ? 'pt-8' : 'justify-center'}`}>
+        
+        {/* LOGO DINAMICO */}
+        <div className={`text-center transition-all duration-500 ${isSearching ? 'scale-50 mb-4' : 'mb-8'}`}>
+          <h1 className="text-8xl font-bold tracking-tighter">
+            <span className="text-blue-500">F</span>
+            <span className="text-red-500">a</span>
+            <span className="text-yellow-500">h</span>
+            <span className="text-blue-500">i</span>
+            <span className="text-green-500">m</span>
+            <span className="text-white ml-2">Search</span>
+          </h1>
+          {!isSearching && <p className="text-slate-400 mt-2 tracking-widest uppercase text-xs">Custom Engineering Engine</p>}
         </div>
-      </section>
 
-      {/* DATABASE PIANETI */}
-      <section className="max-w-6xl mx-auto mb-20">
-        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-          <Globe className="text-blue-400" /> Planetary Data Center
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {planets.map((p) => (
-            <div key={p.name} className="bg-slate-900 p-6 rounded-2xl border border-slate-800 hover:border-orange-500 transition-all group">
-              <h3 className="text-orange-500 font-bold text-2xl mb-1">{p.name}</h3>
-              <span className="text-xs bg-orange-500/20 text-orange-300 px-2 py-1 rounded uppercase font-bold">{p.type}</span>
-              <p className="mt-4 text-slate-300 leading-relaxed">{p.detail}</p>
+        {/* BARRA DI RICERCA */}
+        <form onSubmit={handleSearch} className="w-full max-w-[600px] px-4">
+          <div className="relative flex items-center group">
+            <Search className="absolute left-4 text-slate-500" size={20} />
+            <input 
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full bg-[#303134] border border-[#5f6368] hover:bg-[#3c4043] hover:shadow-md py-3 pl-12 pr-24 rounded-full text-lg outline-none focus:bg-[#303134]"
+            />
+            <div className="absolute right-5 flex gap-3 text-blue-400">
+              <Mic size={20} className="cursor-pointer" />
+              <Camera size={20} className="cursor-pointer" />
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* DATABASE GALASSIE */}
-      <section className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-          <Rocket className="text-purple-400" /> Galactic Structures
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {galaxies.map((g) => (
-            <div key={g.name} className="flex gap-4 bg-slate-900/50 p-6 rounded-2xl border border-slate-800">
-              <div className="bg-purple-500/20 p-3 rounded-xl h-fit">
-                <Info className="text-purple-400" />
-              </div>
-              <div>
-                <h3 className="font-bold text-xl text-white">{g.name}</h3>
-                <p className="text-slate-400">{g.desc}</p>
-              </div>
+          </div>
+          
+          {!isSearching && (
+            <div className="flex justify-center gap-3 mt-8">
+              <button type="submit" className="bg-[#303134] px-4 py-2 rounded text-sm hover:border hover:border-slate-600">Cerca con Fahim</button>
+              <button type="button" className="bg-[#303134] px-4 py-2 rounded text-sm hover:border hover:border-slate-600">Mi sento fortunato</button>
             </div>
-          ))}
-        </div>
-      </section>
+          )}
+        </form>
 
-      <footer className="mt-20 text-center text-slate-600 border-t border-slate-900 pt-8">
-        © 2024 Fahim Turab Softwer • Middle School Engineering Project
+        {/* RISULTATI (SERP) */}
+        {isSearching && (
+          <div className="w-full max-w-[700px] mt-8 px-4 self-start md:ml-[160px]">
+            <p className="text-slate-400 text-sm mb-8">Circa {results.length} risultati trovati</p>
+            
+            {results.length > 0 ? (
+              results.map((res, i) => (
+                <div key={i} className="mb-8 animate-in fade-in slide-in-from-left-4">
+                  <p className="text-sm text-slate-300 mb-1">{res.url}</p>
+                  <a href={res.url} className="text-xl text-[#8ab4f8] hover:underline block mb-1">{res.title}</a>
+                  <p className="text-slate-400 text-sm line-clamp-2">{res.desc}</p>
+                </div>
+              ))
+            ) : (
+              <div className="mt-10">
+                <p>Nessun risultato per <b>{query}</b>.</p>
+                <p className="text-slate-400 mt-2 italic text-sm">Suggerimento: prova a cercare "Fahim", "Marte" o "Ingegnere".</p>
+              </div>
+            )}
+          </div>
+        )}
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-[#171717] text-slate-400 text-sm">
+        <div className="px-8 py-3 border-b border-slate-800">Italia</div>
+        <div className="px-8 py-3 flex flex-wrap justify-between">
+          <div className="flex gap-6">
+            <span>Informazioni</span>
+            <span>Pubblicità</span>
+            <span>Soluzioni aziendali</span>
+          </div>
+          <div className="flex gap-6">
+            <span>Privacy</span>
+            <span>Termini</span>
+            <span>Impostazioni</span>
+          </div>
+        </div>
       </footer>
     </div>
   );
