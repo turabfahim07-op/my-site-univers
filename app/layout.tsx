@@ -1,9 +1,4 @@
- export const metadata = {
-  title: 'Fahim Search Engine',
-  description: 'Il mio motore di ricerca personale',
-}
-
-export default function RootLayout({
+ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
